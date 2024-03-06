@@ -119,7 +119,7 @@ Mat erode(Mat image, Mat structuringElement)
     Mat res = image.clone();
     /********************************************
                 YOUR CODE HERE
-        hint : 1 line of code is enough
+
     *********************************************/
     int rows = image.rows;
     int cols = image.cols;
@@ -162,12 +162,13 @@ Mat erode(Mat image, Mat structuringElement)
 Mat open(Mat image, Mat structuringElement)
 {
 
-    Mat res = Mat::zeros(1,1,CV_32FC1);
+
     /********************************************
                 YOUR CODE HERE
-        hint : 1 line of code is enough
+
     *********************************************/
-    
+
+    Mat res = dilate(erode(image, structuringElement), structuringElement);
     /********************************************
                 END OF YOUR CODE
     *********************************************/
@@ -181,12 +182,12 @@ Mat open(Mat image, Mat structuringElement)
 Mat close(Mat image, Mat structuringElement)
 {
 
-    Mat res = Mat::zeros(1,1,CV_32FC1);
+    
     /********************************************
                 YOUR CODE HERE
-        hint : 1 line of code is enough
+
     *********************************************/
-    
+    Mat res = erode(dilate(image, structuringElement), structuringElement);
     /********************************************
                 END OF YOUR CODE
     *********************************************/
@@ -203,7 +204,7 @@ Mat morphologicalGradient(Mat image, Mat structuringElement)
     Mat res = Mat::zeros(1,1,CV_32FC1);
     /********************************************
                 YOUR CODE HERE
-        hint : 1 line of code is enough
+
     *********************************************/
     
     /********************************************
