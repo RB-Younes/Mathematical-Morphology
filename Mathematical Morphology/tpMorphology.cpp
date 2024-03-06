@@ -97,9 +97,8 @@ Mat dilate(Mat image, Mat structuringElement)
                 }
             }
 
-            std::sort(Values.begin(), Values.end());
-            int n = Values.size();
-            res.at<float>(i, j) = Values[n-1];
+            auto max_element = std::max_element(Values.begin(), Values.end());
+            res.at<float>(i, j) = *max_element;
         }
     }
      
@@ -143,10 +142,8 @@ Mat erode(Mat image, Mat structuringElement)
                     }
                 }
             }
-
-            std::sort(Values.begin(), Values.end());
-            int n = Values.size();
-            res.at<float>(i, j) = Values[0];
+            auto min_element = std::min_element(Values.begin(), Values.end());
+            res.at<float>(i, j) = *min_element;
         }
     }
     /********************************************
@@ -187,6 +184,7 @@ Mat close(Mat image, Mat structuringElement)
                 YOUR CODE HERE
 
     *********************************************/
+
     Mat res = erode(dilate(image, structuringElement), structuringElement);
     /********************************************
                 END OF YOUR CODE
@@ -201,12 +199,26 @@ Mat close(Mat image, Mat structuringElement)
 Mat morphologicalGradient(Mat image, Mat structuringElement)
 {
 
-    Mat res = Mat::zeros(1,1,CV_32FC1);
+
     /********************************************
                 YOUR CODE HERE
 
     *********************************************/
     
+
+
+    Mat er = erode(image, structuringElement);
+    cv::Mat gradInt;
+    cv::subtract(image, er, gradInt);
+
+    Mat dl = dilate(image, structuringElement);
+
+    cv::Mat gradExt;
+    cv::subtract(image, dl, gradExt);
+    
+    cv::Mat res;
+    cv::add(gradInt, gradExt, res);
+
     /********************************************
                 END OF YOUR CODE
     *********************************************/

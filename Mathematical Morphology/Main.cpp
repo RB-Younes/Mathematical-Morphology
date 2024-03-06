@@ -9,9 +9,9 @@ using namespace cv;
 int main()
 {
     cv::Mat structEle = (cv::Mat_<float>(3, 3) <<
-        0.0f, 1.0f, 0.0f,
         1.0f, 1.0f, 1.0f,
-        0.0f, 1.0f, 0.0f);
+        1.0f, 1.0f, 1.0f,
+        1.0f, 1.0f, 1.0f);
 
 
     std::string image_path = samples::findFile("noidea.jpg");
@@ -26,7 +26,7 @@ int main()
         img.convertTo(img, CV_32F);
     }
 
-    Mat res = open(img, structEle);
+    Mat res = morphologicalGradient(img, structEle);
 
 
     // Normaliser les valeurs de l'image dans la plage [0, 1]
