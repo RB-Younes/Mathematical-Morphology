@@ -1,6 +1,6 @@
 # Geometric Transformations
 
-This repository contains implementations of geometric transformation functions as part of the TP Mathematical-Morphology. The functions include image dilation, erosion, opening, closing, and morphological gradient.
+This repository contains implementations of Geometric Transformations functions as part of the TP Mathematical-Morphology. The functions include image dilation, erosion, opening, closing, and morphological gradient.
 
 ## Implemented Functions
 
